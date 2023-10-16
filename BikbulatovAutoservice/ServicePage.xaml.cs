@@ -23,11 +23,17 @@ namespace BikbulatovAutoservice
         public ServicePage()
         {
             InitializeComponent();
+
+            var currentServices = Bikbulatov_autoserviceEntities.GetContext().Service.ToList();
+
+            ServiceListView.ItemsSource = currentServices;
         }
 
+        /*
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditPage());
         }
+        */
     }
 }
