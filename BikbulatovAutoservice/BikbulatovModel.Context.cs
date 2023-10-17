@@ -12,10 +12,9 @@ namespace BikbulatovAutoservice
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class Bikbulatov_autoserviceEntities : DbContext
     {
-        // added
         private static Bikbulatov_autoserviceEntities _context;
 
         public static Bikbulatov_autoserviceEntities GetContext()
@@ -25,7 +24,7 @@ namespace BikbulatovAutoservice
 
             return _context;
         }
-        // added
+
         public Bikbulatov_autoserviceEntities()
             : base("name=Bikbulatov_autoserviceEntities")
         {
