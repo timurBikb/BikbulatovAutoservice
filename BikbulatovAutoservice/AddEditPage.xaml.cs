@@ -45,12 +45,11 @@ namespace BikbulatovAutoservice
             if (_currentService.Cost == 0)
                 errors.AppendLine("Укажите стоимость улуги");
 
-            // дискаунт у студентов числом может быть, тогда защита как у cost
-            if (_currentService.Discount == null)
-                errors.AppendLine("Укажите скидку");
+            if (_currentService.Discount < 0 || _currentService.Discount > 100)
+                errors.AppendLine("Укажите скидку от 0 до 100");
 
-            if (string.IsNullOrWhiteSpace(_currentService.DurationInSeconds))
-                errors.AppendLine("Укажите длительность услуги");
+            if (_currentService.Duration > 240 || _currentService.Duration < 0)
+                errors.AppendLine("Укажите длительность услуги от 0 до 240");
 
             if (errors.Length > 0)
             {
@@ -58,20 +57,29 @@ namespace BikbulatovAutoservice
                 return;
             }
 
-            // добавить в контекст текущие значения новой услуги
-            if (_currentService.ID == 0)
-                Bikbulatov_autoserviceEntities.GetContext().Service.Add(_currentService);
+            var allService = Bikbulatov_autoserviceEntities.GetContext().Service.ToList();
+            allService = allService.Where(p => p.Title == _currentService.Title).ToList();
 
-            // сохранить изменения, если никаких ошибок не получилось при этом
-            try
+            if (allService.Count == 0)
             {
-                Bikbulatov_autoserviceEntities.GetContext().SaveChanges();
-                MessageBox.Show("информация сохранена");
-                Manager.MainFrame.GoBack();
+                if (_currentService.ID == 0)
+                    Bikbulatov_autoserviceEntities.GetContext().Service.Add(_currentService);
+
+                // сохранить изменения, если никаких ошибок не получилось при этом
+                try
+                {
+                    Bikbulatov_autoserviceEntities.GetContext().SaveChanges();
+                    MessageBox.Show("информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Уже существует такая услуга");
             }
         }
     }

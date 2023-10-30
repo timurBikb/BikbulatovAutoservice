@@ -117,6 +117,12 @@
     <Compile Include="ServicePhoto.cs">
       <DependentUpon>BikbulatovModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>BikbulatovModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tag.cs">
       <DependentUpon>BikbulatovModel.tt</DependentUpon>
     </Compile>
@@ -137,6 +143,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,16 +195,6 @@
     <Resource Include="service_logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BikbulatovModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BikbulatovModel.Context.cs</LastGenOutput>
-      <DependentUpon>BikbulatovModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="BikbulatovModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BikbulatovModel.edmx</DependentUpon>
-      <LastGenOutput>BikbulatovModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\picture.png" />
     <Resource Include="Услуги автосервиса\diz.jpg" />
     <Resource Include="Услуги автосервиса\rulevoe-upravlenie-avtomobilya.jpg" />
@@ -216,6 +216,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BikbulatovModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BikbulatovModel.edmx</DependentUpon>
+      <LastGenOutput>BikbulatovModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BikbulatovModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BikbulatovModel.edmx</DependentUpon>
+      <LastGenOutput>BikbulatovModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
